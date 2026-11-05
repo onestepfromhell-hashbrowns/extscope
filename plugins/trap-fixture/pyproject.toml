@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "extscope-plugin-trap-fixture"
+version = "0.1.0a6"
+license = "MIT"
+description = "Test fixture plugin for verifying unselected plugin isolation"
+requires-python = ">=3.11"
+authors = [
+    { name = "onestepfromhell-hashbrowns" }
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+[project.urls]
+Homepage = "https://github.com/onestepfromhell-hashbrowns/extscope"
+Repository = "https://github.com/onestepfromhell-hashbrowns/extscope"
+
+[project.entry-points."extscope.plugins"]
+unselected-trap = "extscope_plugin_trap:Plugin"
+
+[tool.setuptools.packages.find]
+where = ["src"]

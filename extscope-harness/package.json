@@ -1,0 +1,8 @@
+{
+  "name": "agent-harness-adapter",
+  "id": "agent-harness-adapter",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "跨 Agent 分發 .agents 資產的 harness 適配器與 dst 規則技能",
+  "files": ["skills", "adapters", "manifests", "spec"]
+}

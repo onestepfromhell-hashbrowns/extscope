@@ -1,0 +1,33 @@
+{
+  "$schema": "urn:extscope:schema:harness-adapter-v1",
+  "harness_id": "codex",
+  "name": "OpenAI Codex CLI & IDE Harness",
+  "version": "1.0.0",
+  "projections": {
+    "skills": {
+      "mode": "symlink_children",
+      "target_dir": "./.agents/skills"
+    },
+    "rules": {
+      "mode": "symlink_children",
+      "target_dir": "./.codex/rules"
+    },
+    "fragments": {
+      "mode": "md_block_append",
+      "target_file": "./AGENTS.md"
+    },
+    "mcp": {
+      "mode": "toml_mcp_merge",
+      "target_file": "~/.codex/config.toml"
+    }
+  },
+  "runtime_bootstrap": {
+    "ensure_workspace_trust": {
+      "enabled": true,
+      "config_file": "~/.codex/config.toml",
+      "trusted_paths": [
+        "./"
+      ]
+    }
+  }
+}

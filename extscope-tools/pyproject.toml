@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "extscope-tools"
+version = "0.1.0a6"
+license = "MIT"
+readme = "README.md"
+description = "Independent tools: static secret/mount gate, anomaly ledger, layer-dependency authority check"
+requires-python = ">=3.11"
+authors = [
+    { name = "onestepfromhell-hashbrowns" }
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/onestepfromhell-hashbrowns/extscope"
+Repository = "https://github.com/onestepfromhell-hashbrowns/extscope"
+
+[project.scripts]
+extscope-tools = "extscope_tools.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

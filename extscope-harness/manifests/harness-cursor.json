@@ -1,0 +1,17 @@
+{
+  "$schema": "urn:extscope:schema:harness-adapter-v1",
+  "harness_id": "cursor",
+  "name": "Cursor IDE Harness",
+  "version": "1.0.0",
+  "projections": {
+    "rules": {
+      "mode": "md_block_append",
+      "target_file": "./.cursorrules"
+    },
+    "fragments": {
+      "mode": "md_block_append",
+      "target_file": "./.cursorrules"
+    }
+  },
+  "runtime_bootstrap": {}
+}

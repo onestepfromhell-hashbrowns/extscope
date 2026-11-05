@@ -1,0 +1,17 @@
+{
+  "$schema": "urn:extscope:schema:harness-adapter-v1",
+  "harness_id": "claude-host",
+  "name": "Anthropic Claude Code Host Harness",
+  "version": "1.0.0",
+  "projections": {
+    "skills": {
+      "mode": "symlink_children",
+      "target_dir": "~/skills"
+    },
+    "mcp": {
+      "mode": "json_merge",
+      "target_file": "~/mcp.json"
+    }
+  },
+  "runtime_bootstrap": {}
+}

@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-harness-adapter"
+version = "0.1.0a6"
+license = "MIT"
+description = "FROZEN: plan-only skills preview with no executor. Superseded by extscope-harness --emit-dist-plan + extscope-dist; do not extend."
+requires-python = ">=3.11"
+authors = [
+    { name = "onestepfromhell-hashbrowns" }
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = ["extscope>=0.1.0a5,<0.2"]
+
+[project.urls]
+Homepage = "https://github.com/onestepfromhell-hashbrowns/extscope"
+Repository = "https://github.com/onestepfromhell-hashbrowns/extscope"
+
+[project.entry-points."extscope.plugins"]
+agent-harness-adapter = "agent_harness_adapter.plugin:Plugin"
+
+[tool.setuptools.packages.find]
+where = ["src"]

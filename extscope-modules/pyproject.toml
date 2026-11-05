@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "extscope-modules"
+version = "0.1.0a6"
+license = "MIT"
+readme = "README.md"
+description = "Optional pipeline modules for extscope-dist: chmod, chown, key_inject, env_inject, custom_hook"
+requires-python = ">=3.11"
+authors = [
+    { name = "onestepfromhell-hashbrowns" }
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/onestepfromhell-hashbrowns/extscope"
+Repository = "https://github.com/onestepfromhell-hashbrowns/extscope"
+
+[tool.setuptools.packages.find]
+where = ["src"]

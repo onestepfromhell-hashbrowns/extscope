@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: ["master", "main", "cleanup/**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install pytest and packages
+        run: |
+          python -m pip install --upgrade pip pytest
+          python -m pip install -e . -e ./extscope-dist -e ./extscope-modules -e ./extscope-container -e ./extscope-tools
+      - name: Run extscope test suite
+        run: |
+          python -m pytest tests extscope-dist/tests extscope-modules/tests extscope-container/tests extscope-tools/tests extscope-harness/tests -p no:cacheprovider -q

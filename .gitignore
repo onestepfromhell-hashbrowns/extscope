@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+
+# release hygiene
+node_modules/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.DS_Store
+.idea/
+.vscode/
+*.swp

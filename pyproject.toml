@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "extscope"
+version = "0.1.0a6"
+license = "MIT"
+readme = "README.md"
+description = "Neutral extension delivery core with read-only planning and source verification"
+requires-python = ">=3.11"
+authors = [
+    { name = "onestepfromhell-hashbrowns" }
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: System :: Software Distribution",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/onestepfromhell-hashbrowns/extscope"
+Repository = "https://github.com/onestepfromhell-hashbrowns/extscope"
+Issues = "https://github.com/onestepfromhell-hashbrowns/extscope/issues"
+Security = "https://github.com/onestepfromhell-hashbrowns/extscope/security/advisories/new"
+
+[project.scripts]
+extscope = "extscope.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
