@@ -47,8 +47,15 @@ class Chown:
         t = config["target"]
         self.plan(config, policy)
         uid, gid = _ids(config["owner"])
-        st = os.lstat(t)
-        os.chown(t, uid, gid)
+        fd = os.open(t, os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0))
+        try:
+            st = os.fstat(fd)
+            if hasattr(os, "fchown"):
+                os.fchown(fd, uid, gid)
+            else:
+                os.chown(t, uid, gid)
+        finally:
+            os.close(fd)
         return {"target": t, "prev": [st.st_uid, st.st_gid], "new": [uid, gid if gid != -1 else st.st_gid]}
 
     def undo(self, rec, force):

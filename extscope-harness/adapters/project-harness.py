@@ -188,6 +188,11 @@ def inject_md_block(dst_file: Path, block_id: str, content: str, verbose: bool =
     return False
 
 
+def _toml_key_escape(key: str) -> str:
+    """跳脫 TOML 鍵名稱，防止換行、引號或特殊字元注入新 section。"""
+    return json.dumps(key, ensure_ascii=False)
+
+
 def ensure_codex_trust(config_file: Path, trusted_paths: list[str], verbose: bool = False) -> None:
     """確保 Codex config.toml 包含指定路徑的 trust_level = 'trusted'。"""
     config_file.parent.mkdir(parents=True, exist_ok=True)
@@ -195,7 +200,7 @@ def ensure_codex_trust(config_file: Path, trusted_paths: list[str], verbose: boo
 
     modified = False
     for path in trusted_paths:
-        section = f'[projects."{path}"]'
+        section = f'[projects.{_toml_key_escape(path)}]'
         if section not in content:
             block = f'\n{section}\ntrust_level = "trusted"\n'
             content += block
@@ -475,7 +480,7 @@ def _merge_json_mcp(target_file: Path, servers: dict[str, dict], verbose: bool =
 
 def _format_codex_mcp_section(name: str, s_def: dict) -> str:
     """格式化單一 MCP Server 為 Codex TOML 區塊。"""
-    lines = [f'[mcp_servers."{name}"]']
+    lines = [f'[mcp_servers.{_toml_key_escape(name)}]']
     if "command" in s_def:
         lines.append(f'command = {json.dumps(s_def["command"], ensure_ascii=False)}')
     if "args" in s_def and isinstance(s_def["args"], list):
