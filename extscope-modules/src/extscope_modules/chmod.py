@@ -1,4 +1,5 @@
 import os
+import stat
 
 from ._util import lstat_mode, mode_of, no_special_bits
 
@@ -24,14 +25,23 @@ class Chmod:
     def apply(self, config, policy, ctx):
         t = config["target"]
         self.plan(config, policy)
-        prev = lstat_mode(t)
-        os.chmod(t, mode_of(config["mode"]))
+        fd = os.open(t, os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0))
+        try:
+            st = os.fstat(fd)
+            prev = stat.S_IMODE(st.st_mode)
+            os.fchmod(fd, mode_of(config["mode"]))
+        finally:
+            os.close(fd)
         return {"target": t, "prev_mode": prev, "new_mode": mode_of(config["mode"])}
 
     def undo(self, rec, force):
         if not force and lstat_mode(rec["target"]) != rec["new_mode"]:
             raise ValueError("mode changed since apply")
-        os.chmod(rec["target"], rec["prev_mode"])
+        fd = os.open(rec["target"], os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0))
+        try:
+            os.fchmod(fd, rec["prev_mode"])
+        finally:
+            os.close(fd)
 
     def verify(self, rec):
         if not os.path.lexists(rec["target"]):
