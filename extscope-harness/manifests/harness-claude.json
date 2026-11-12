@@ -1,0 +1,25 @@
+{
+  "$schema": "urn:extscope:schema:harness-adapter-v1",
+  "harness_id": "claude",
+  "name": "Anthropic Claude Code Harness",
+  "version": "1.0.0",
+  "projections": {
+    "skills": {
+      "mode": "symlink_children",
+      "target_dir": "~/.claude/skills"
+    },
+    "rules": {
+      "mode": "md_block_append",
+      "target_file": "./CLAUDE.md"
+    },
+    "fragments": {
+      "mode": "md_block_append",
+      "target_file": "./CLAUDE.md"
+    },
+    "mcp": {
+      "mode": "json_merge",
+      "target_file": "~/.claude/mcp.json"
+    }
+  },
+  "runtime_bootstrap": {}
+}

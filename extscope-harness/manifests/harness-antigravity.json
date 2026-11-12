@@ -1,0 +1,25 @@
+{
+  "$schema": "urn:extscope:schema:harness-adapter-v1",
+  "harness_id": "antigravity",
+  "name": "Google Antigravity IDE Harness",
+  "version": "1.0.0",
+  "projections": {
+    "skills": {
+      "mode": "symlink_children",
+      "target_dir": "./.agents/skills"
+    },
+    "rules": {
+      "mode": "symlink_children",
+      "target_dir": "./.agents/rules"
+    },
+    "fragments": {
+      "mode": "md_block_append",
+      "target_file": "./.agents/AGENTS.md"
+    },
+    "mcp": {
+      "mode": "json_merge",
+      "target_file": "./.agents/mcp_config.json"
+    }
+  },
+  "runtime_bootstrap": {}
+}

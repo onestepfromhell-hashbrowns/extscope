@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "extscope-tools"
+version = "0.1.0a2"
+license = "MIT"
+description = "Independent tools: static secret/mount gate, anomaly ledger, layer-dependency authority check"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+extscope-tools = "extscope_tools.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

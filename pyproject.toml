@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "extscope"
+version = "0.1.0a6"
+license = "MIT"
+license-files = ["LICENSE"]
+description = "Neutral extension delivery core with read-only planning and source verification"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+extscope = "extscope.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

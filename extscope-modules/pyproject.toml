@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "extscope-modules"
+version = "0.1.0a2"
+license = "MIT"
+description = "Optional pipeline modules for extscope-dist: chmod, chown, key_inject, env_inject, custom_hook"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]

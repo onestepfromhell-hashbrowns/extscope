@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ExtScope overview</title>
+<style>
+:root{--bg:#fff;--fg:#1b1f24;--mut:#59636e;--line:#d0d7de;--card:#f6f8fa;--a:#0969da;--ok:#1a7f37;--w:#9a6700}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0d1117;--fg:#e6edf3;--mut:#8d96a0;--line:#30363d;--card:#161b22;--a:#58a6ff;--ok:#3fb950;--w:#d29922}}
+:root[data-theme=dark]{--bg:#0d1117;--fg:#e6edf3;--mut:#8d96a0;--line:#30363d;--card:#161b22;--a:#58a6ff;--ok:#3fb950;--w:#d29922}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+header,main{max-width:56rem;margin:0 auto;padding:0 16px}
+header{padding-top:32px}
+h1{margin:0 0 4px;font-size:1.9rem}h2{margin:2.2rem 0 .6rem;font-size:1.25rem;border-bottom:1px solid var(--line);padding-bottom:.3rem}
+p.lead{color:var(--mut);margin:0 0 1rem}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+nav a{color:var(--a);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:.9rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.card h3{margin:0 0 4px;font-size:1rem;font-family:ui-monospace,monospace}
+.tag{display:inline-block;font-size:.75rem;border-radius:4px;padding:0 6px;border:1px solid var(--line);color:var(--mut)}
+.tag.rw{color:var(--w);border-color:var(--w)}.tag.ro{color:var(--ok);border-color:var(--ok)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88rem}
+pre{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;overflow-x:auto}
+svg{width:100%;height:auto;display:block}
+svg .b{fill:var(--card);stroke:var(--line);stroke-width:1.5}
+svg .w{fill:var(--card);stroke:var(--w);stroke-width:1.5}
+svg .r{fill:var(--card);stroke:var(--ok);stroke-width:1.5}
+svg text{fill:var(--fg);font:13px system-ui,sans-serif}
+svg .s{fill:var(--mut);font-size:11px}
+svg .ln{stroke:var(--mut);stroke-width:1.5;fill:none;marker-end:url(#ar)}
+details{border:1px solid var(--line);border-radius:8px;padding:6px 12px;margin:8px 0}
+summary{cursor:pointer;font-weight:600}
+footer{max-width:56rem;margin:2rem auto;padding:0 16px;color:var(--mut);font-size:.85rem}
+</style>
+</head>
+<body>
+<header>
+<h1>ExtScope</h1>
+<p class="lead">Declare which tools, skills and rules a container or agent account gets. ExtScope checks the declaration, plans the work, and copies the files.</p>
+<nav aria-label="Sections">
+<a href="#flow">Workflow</a><a href="#pkgs">Packages</a><a href="#layers">Layers</a><a href="#fhs">Directories</a><a href="#start">Quick start</a>
+</nav>
+</header>
+<main>
+
+<h2 id="flow">Workflow</h2>
+<p>Green boxes only read. Orange boxes write.</p>
+<svg viewBox="0 0 760 150" role="img" aria-label="Workflow from declaration to applied files">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="currentColor" style="fill:var(--mut)"/></marker></defs>
+<rect class="b" x="6" y="45" width="100" height="56" rx="8"/><text x="56" y="70" text-anchor="middle">Declaration</text><text class="s" x="56" y="88" text-anchor="middle">*.extscope.json</text>
+<rect class="r" x="140" y="45" width="100" height="56" rx="8"/><text x="190" y="70" text-anchor="middle">validate</text><text class="s" x="190" y="88" text-anchor="middle">structure</text>
+<rect class="r" x="274" y="45" width="100" height="56" rx="8"/><text x="324" y="70" text-anchor="middle">plan</text><text class="s" x="324" y="88" text-anchor="middle">DAG, digests</text>
+<rect class="r" x="408" y="45" width="100" height="56" rx="8"/><text x="458" y="70" text-anchor="middle">bind / verify</text><text class="s" x="458" y="88" text-anchor="middle">receipt</text>
+<rect class="w" x="542" y="45" width="100" height="56" rx="8"/><text x="592" y="70" text-anchor="middle">dist apply</text><text class="s" x="592" y="88" text-anchor="middle">backup first</text>
+<rect class="w" x="656" y="45" width="98" height="56" rx="8"/><text x="705" y="70" text-anchor="middle">rollback</text><text class="s" x="705" y="88" text-anchor="middle">if needed</text>
+<path class="ln" d="M106 73H138"/><path class="ln" d="M240 73H272"/><path class="ln" d="M374 73H406"/><path class="ln" d="M508 73H540"/><path class="ln" d="M642 73H654"/>
+</svg>
+
+<h2 id="pkgs">Packages</h2>
+<p>Each package uses only the standard library. No package imports another. They share JSON files only.</p>
+<div class="grid">
+<div class="card"><h3>extscope</h3><span class="tag ro">read-only</span><p>Validate, plan, bind, verify, query.</p></div>
+<div class="card"><h3>extscope-dist</h3><span class="tag rw">writes</span><p>Copy or link to host targets. Backup and rollback.</p></div>
+<div class="card"><h3>extscope-modules</h3><span class="tag rw">writes</span><p>Optional steps: mode, owner, key, environment, hook, import.</p></div>
+<div class="card"><h3>extscope-container</h3><span class="tag rw">writes</span><p>Move files into containers. Leases and cleanup.</p></div>
+<div class="card"><h3>extscope-harness</h3><span class="tag ro">plans only</span><p>Choose the target path for each agent platform.</p></div>
+<div class="card"><h3>extscope-tools</h3><span class="tag ro">read-only</span><p>Secret and mount scan. Anomaly ledger. Layer check.</p></div>
+</div>
+
+<h2 id="layers">Layers</h2>
+<p>A higher layer can depend on a lower layer. The reverse is an error.</p>
+<svg viewBox="0 0 520 230" role="img" aria-label="Five layers, project on top, system at the bottom">
+<rect class="b" x="110" y="6" width="300" height="38" rx="6"/><text x="260" y="30" text-anchor="middle">project (top)</text>
+<rect class="b" x="110" y="50" width="300" height="38" rx="6"/><text x="260" y="74" text-anchor="middle">preset: role templates</text>
+<rect class="b" x="110" y="94" width="300" height="38" rx="6"/><text x="260" y="118" text-anchor="middle">solution: sets of declarations</text>
+<rect class="b" x="110" y="138" width="300" height="38" rx="6"/><text x="260" y="162" text-anchor="middle">biz: single capabilities</text>
+<rect class="b" x="110" y="182" width="300" height="38" rx="6"/><text x="260" y="206" text-anchor="middle">system (bottom)</text>
+</svg>
+
+<h2 id="fhs">Directories</h2>
+<table>
+<tr><th>Purpose</th><th>System mode</th><th>User mode</th></tr>
+<tr><td>Programs</td><td><code>/usr/local/bin</code>, <code>/usr/local/lib/extscope*</code></td><td><code>~/.local/bin</code>, <code>~/.local/lib</code></td></tr>
+<tr><td>Configuration</td><td><code>/etc/extscope</code></td><td><code>$XDG_CONFIG_HOME/extscope</code></td></tr>
+<tr><td>Cache</td><td><code>/var/cache/extscope</code></td><td><code>$XDG_CACHE_HOME/extscope</code></td></tr>
+<tr><td>Runtime</td><td><code>/run/extscope</code></td><td><code>$XDG_RUNTIME_DIR/extscope</code></td></tr>
+<tr><td>State</td><td colspan="2">The <code>state_dir</code> you set.</td></tr>
+</table>
+
+<h2 id="start">Quick start</h2>
+<pre>pip install .
+extscope validate --scope /abs/path/my-tool.extscope.json
+extscope plan     --scope /abs/path/my-blueprint.extscope.json --entry &lt;entry&gt;
+extscope-dist plan  --receipt receipt.json
+extscope-dist apply --receipt receipt.json</pre>
+<details><summary>Safety rules</summary>
+<ul>
+<li>The core is read-only. It rejects symbolic links in declarations.</li>
+<li><code>extscope-dist</code> locks each target directory, backs up first, and rolls back if a step fails.</li>
+<li><code>extscope-dist prune</code> deletes old backups only with <code>--apply</code>.</li>
+<li>Errors are short. Set <code>EXTSCOPE_DEBUG=1</code> to see details.</li>
+</ul></details>
+</main>
+<footer>MIT License. See <code>LICENSE</code> for the full text.</footer>
+</body>
+</html>

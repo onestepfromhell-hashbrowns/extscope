@@ -1,0 +1,21 @@
+{
+  "$schema": "urn:extscope:schema:harness-adapter-v1",
+  "harness_id": "antigravity-host",
+  "name": "Google Antigravity Host Harness",
+  "version": "1.0.0",
+  "projections": {
+    "skills": {
+      "mode": "symlink_children",
+      "target_dir": "~/skills"
+    },
+    "rules": {
+      "mode": "symlink_children",
+      "target_dir": "~/rules"
+    },
+    "fragments": {
+      "mode": "md_block_append",
+      "target_file": "~/AGENTS.md"
+    }
+  },
+  "runtime_bootstrap": {}
+}

@@ -1,0 +1,7 @@
+{
+  "name": "agent-harness-adapter",
+  "id": "agent-harness-adapter",
+  "version": "1.0.0",
+  "description": "Harness adapters and destination-rule skill for distributing .agents assets across agent platforms",
+  "files": ["skills", "adapters", "manifests", "spec"]
+}

@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "extscope-dist"
+version = "0.1.0a3"
+license = "MIT"
+description = "Standalone, config-driven file distribution (copy / symlink / markdown block) with staging, backup and rollback"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+extscope-dist = "extscope_dist.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

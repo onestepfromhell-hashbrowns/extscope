@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-harness-adapter"
+version = "0.1.0a1"
+license = "MIT"
+description = "FROZEN: plan-only skills preview with no executor. Superseded by extscope-harness --emit-dist-plan + extscope-dist; do not extend."
+requires-python = ">=3.11"
+dependencies = ["extscope>=0.1.0a5,<0.2"]
+
+[project.entry-points."extscope.plugins"]
+agent-harness-adapter = "agent_harness_adapter.plugin:Plugin"
+
+[tool.setuptools.packages.find]
+where = ["src"]

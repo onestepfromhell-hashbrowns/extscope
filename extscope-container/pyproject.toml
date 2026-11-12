@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "extscope-container"
+version = "0.1.0a1"
+license = "MIT"
+description = "Container transport for extscope plans: creation-plan, run, canary lease, staging references, ephemeral gc/purge, secret re-injection"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+extscope-container = "extscope_container.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
